@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { hideConfirmationModal } from '../features/createEmployee/employeesSlice'
+import PropTypes from 'prop-types'
 
 /**
  * The `ConfirmationModal` component is responsible for rendering a modal dialog
@@ -61,6 +62,10 @@ const ConfirmationModal = ({ onClose }) => {
       </Modal.Footer>
     </Modal>
   )
+}
+
+ConfirmationModal.propTypes = {
+  onClose: PropTypes.func,
 }
 
 export default ConfirmationModal
