@@ -1,4 +1,5 @@
 import Form from 'react-bootstrap/Form'
+import PropTypes from 'prop-types'
 
 /**
  * The `Dropdown` component is a reusable dropdown menu component built on top of
@@ -35,6 +36,15 @@ const Dropdown = ({ label, htmlForLabel, value, handler, id, children }) => {
       </Form.Control.Feedback>
     </Form.Group>
   )
+}
+
+Dropdown.propTypes = {
+  label: PropTypes.string,
+  htmlForLabel: PropTypes.string,
+  value: PropTypes.string,
+  handler: PropTypes.func,
+  id: PropTypes.string,
+  children: PropTypes.array,
 }
 
 export default Dropdown
