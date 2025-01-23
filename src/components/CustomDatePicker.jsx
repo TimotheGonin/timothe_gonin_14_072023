@@ -34,6 +34,11 @@ const CustomDatePicker = ({ label, htmlForLabel, value, handler }) => {
     </React.Fragment>
   ))
 
+  CustomInput.displayName = 'CustomInput'
+  CustomInput.propTypes = {
+    onClick: PropTypes.func,
+  }
+
   return (
     <Form.Group>
       <Form.Label htmlFor={htmlForLabel}>{label}</Form.Label>
