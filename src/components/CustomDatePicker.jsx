@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react'
+import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import 'react-datepicker/dist/react-datepicker.min.css'
@@ -52,6 +53,13 @@ const CustomDatePicker = ({ label, htmlForLabel, value, handler }) => {
       />
     </Form.Group>
   )
+}
+
+CustomDatePicker.propTypes = {
+  label: PropTypes.string,
+  htmlForLabel: PropTypes.string,
+  value: PropTypes.string,
+  handler: PropTypes.func,
 }
 
 export default CustomDatePicker
