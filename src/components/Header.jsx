@@ -1,4 +1,3 @@
-import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import Container from 'react-bootstrap/Container'

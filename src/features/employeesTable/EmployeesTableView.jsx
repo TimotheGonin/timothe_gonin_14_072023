@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import Spinner from 'react-bootstrap/Spinner'
 import { SortableTable } from 'sortable-table-react'
