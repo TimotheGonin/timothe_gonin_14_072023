@@ -84,13 +84,9 @@ const CreateEmployeeView = () => {
 
   const handleConfirmationModalClose = () => {
     setValidated(false)
-    const emptyEmployee = {}
-    for (const key in newEmployee) {
-      if (newEmployee.hasOwnProperty(key)) {
-        emptyEmployee[key] = ''
-      }
-    }
-    setNewEmployee(emptyEmployee)
+    setNewEmployee(
+      Object.fromEntries(Object.keys(newEmployee).map((key) => [key, '']))
+    )
     formRef.current.reset()
   }
 
