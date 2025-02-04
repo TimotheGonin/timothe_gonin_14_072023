@@ -80,9 +80,6 @@ const CreateEmployeeView = () => {
     }
 
     dispatch(createEmployee(newEmployee))
-  }
-
-  const handleConfirmationModalClose = () => {
     setValidated(false)
     setNewEmployee(
       Object.fromEntries(Object.keys(newEmployee).map((key) => [key, '']))
@@ -236,7 +233,7 @@ const CreateEmployeeView = () => {
         </div>
 
         {/* Confirmation Modal */}
-        <ConfirmationModal onClose={handleConfirmationModalClose} />
+        <ConfirmationModal />
       </Form>
     </section>
   )
