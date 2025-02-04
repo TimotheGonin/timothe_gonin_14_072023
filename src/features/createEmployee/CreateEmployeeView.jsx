@@ -7,7 +7,7 @@ import { states } from '../../constants'
 import Form from 'react-bootstrap/Form'
 import CustomDatePicker from '../../components/CustomDatePicker'
 import Dropdown from '../../components/Dropdown'
-import Button from 'react-bootstrap/Button'
+// import Button from 'react-bootstrap/Button'
 import ConfirmationModal from '../../components/ConfirmationModal'
 
 /* 
@@ -226,14 +226,16 @@ const CreateEmployeeView = () => {
         </Dropdown>
 
         {/* Submit Button */}
-        <div className="mt-4 mb-5">
+        {/* <div className="mt-4 mb-5">
           <Button className="w-100" variant="outline-primary" type="submit">
             Save
           </Button>
-        </div>
+        </div> */}
 
         {/* Confirmation Modal */}
-        <ConfirmationModal />
+        <div className="mt-4 mb-5">
+          <ConfirmationModal />
+        </div>
       </Form>
     </section>
   )
