@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { createEmployee } from './employeesSlice'
+import { createEmployee, hideConfirmationModal } from './employeesSlice'
 import { states } from '../../constants'
 
 import Form from 'react-bootstrap/Form'
@@ -92,6 +92,11 @@ const CreateEmployeeView = () => {
       Object.fromEntries(Object.keys(newEmployee).map((key) => [key, '']))
     )
     formRef.current.reset()
+  }
+
+  const handleCloseModal = () => {
+    setModal(!modal)
+    dispatch(hideConfirmationModal(false))
   }
 
   return (
@@ -240,10 +245,7 @@ const CreateEmployeeView = () => {
         </div>
 
         {/* Confirmation Modal */}
-        <ConfirmationModal
-          modalStatus={modal}
-          onToggle={() => setModal(!modal)}
-        />
+        <ConfirmationModal modalStatus={modal} onToggle={handleCloseModal} />
       </Form>
     </section>
   )
