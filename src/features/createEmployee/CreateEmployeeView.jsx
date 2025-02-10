@@ -1,14 +1,14 @@
 import { useRef, useState } from 'react'
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
-import { createEmployee } from './employeesSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { createEmployee, hideConfirmationModal } from './employeesSlice'
 import { states } from '../../constants'
 
 import Form from 'react-bootstrap/Form'
 import CustomDatePicker from '../../components/CustomDatePicker'
 import Dropdown from '../../components/Dropdown'
 import Button from 'react-bootstrap/Button'
-import ConfirmationModal from '../../components/ConfirmationModal'
+import { Modal } from 'modal-react-vite'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -47,6 +47,9 @@ const Fieldset = styled.fieldset`
 
 const CreateEmployeeView = () => {
   const dispatch = useDispatch()
+  const modalStatus = useSelector(
+    (state) => state.employees.confirmationModalDisplayed
+  )
 
   const [validated, setValidated] = useState(false)
   const formRef = useRef(null)
@@ -80,18 +83,15 @@ const CreateEmployeeView = () => {
     }
 
     dispatch(createEmployee(newEmployee))
+    setValidated(false)
+    setNewEmployee(
+      Object.fromEntries(Object.keys(newEmployee).map((key) => [key, '']))
+    )
+    formRef.current.reset()
   }
 
-  const handleConfirmationModalClose = () => {
-    setValidated(false)
-    const emptyEmployee = {}
-    for (const key in newEmployee) {
-      if (newEmployee.hasOwnProperty(key)) {
-        emptyEmployee[key] = ''
-      }
-    }
-    setNewEmployee(emptyEmployee)
-    formRef.current.reset()
+  const handleCloseModal = () => {
+    dispatch(hideConfirmationModal(false))
   }
 
   return (
@@ -240,7 +240,13 @@ const CreateEmployeeView = () => {
         </div>
 
         {/* Confirmation Modal */}
-        <ConfirmationModal onClose={handleConfirmationModalClose} />
+        <Modal
+          buttonTitle="Save"
+          title="Employee creation"
+          description="Employee created with success !"
+          modalStatus={modalStatus}
+          onToggle={handleCloseModal}
+        />
       </Form>
     </section>
   )
