@@ -9,12 +9,14 @@ import { Modal } from 'modal-react-vite'
  * @param {function} onClose - A callback function to be executed when the modal is closed.
  * @returns {JSX.Element} The rendered ConfirmationModal component.
  */
-const ConfirmationModal = () => {
+const ConfirmationModal = ({ onToggle, modalStatus }) => {
   return (
     <Modal
       buttonTitle="Save"
       title="Employee creation"
       description="Employee created with success !"
+      modalStatus={modalStatus}
+      onToggle={onToggle}
     />
   )
 }

@@ -1,13 +1,13 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { createEmployee } from './employeesSlice'
 import { states } from '../../constants'
 
 import Form from 'react-bootstrap/Form'
 import CustomDatePicker from '../../components/CustomDatePicker'
 import Dropdown from '../../components/Dropdown'
-// import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button'
 import ConfirmationModal from '../../components/ConfirmationModal'
 
 /* 
@@ -47,6 +47,13 @@ const Fieldset = styled.fieldset`
 
 const CreateEmployeeView = () => {
   const dispatch = useDispatch()
+  const modalStatus = useSelector(
+    (state) => state.employees.confirmationModalDisplayed
+  )
+  const [modal, setModal] = useState(modalStatus)
+  useEffect(() => {
+    setModal(modalStatus)
+  }, [modalStatus])
 
   const [validated, setValidated] = useState(false)
   const formRef = useRef(null)
@@ -226,16 +233,17 @@ const CreateEmployeeView = () => {
         </Dropdown>
 
         {/* Submit Button */}
-        {/* <div className="mt-4 mb-5">
+        <div className="mt-4 mb-5">
           <Button className="w-100" variant="outline-primary" type="submit">
             Save
           </Button>
-        </div> */}
+        </div>
 
         {/* Confirmation Modal */}
-        <div className="mt-4 mb-5">
-          <ConfirmationModal />
-        </div>
+        <ConfirmationModal
+          modalStatus={modal}
+          onToggle={() => setModal(!modal)}
+        />
       </Form>
     </section>
   )
